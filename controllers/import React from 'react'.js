@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDom from 'react-dom/client'
+import ReactDom from '@react-dom/client'
 import App from './App'
 import {Provider} from 'react-redux'
 import {createStore,applyMiddleware} from 'redux'
@@ -49,7 +49,22 @@ const todoReducer = (action,state=[]) =>{
             return state    
     }
 }
+//dickinson
+//ambitions
+//heatwave
+//firstkill
 
+// https://res.cloudinary.com/dvcj2fbjt/image/upload/v1658515128/i0ll1qlmqggtwkbvj76z.jpg
+// https://res.cloudinary.com/dvcj2fbjt/image/upload/v1658514939/lps1u4vaewfrpv6k1oet.jpg
+// https://res.cloudinary.com/dvcj2fbjt/image/upload/v1658344813/bcx8o2jdf9o2uarnwbuj.jpg
+// https://res.cloudinary.com/dvcj2fbjt/image/upload/v1658139688/qakyhahowfculvumrou0.jpg
+// https://res.cloudinary.com/dvcj2fbjt/image/upload/v1658139529/cvu5nt55tohc7tld325v.jpg
+// https://res.cloudinary.com/dvcj2fbjt/image/upload/v1658054195/cld-sample-4.jpg
+// https://res.cloudinary.com/dvcj2fbjt/image/upload/v1658054194/cld-sample-2.jpg
+// https://res.cloudinary.com/dvcj2fbjt/image/upload/v1658054193/cld-sample.jpg
+// https://res.cloudinary.com/dvcj2fbjt/image/upload/v1658054169/sample.jpg
+// https://res.cloudinary.com/dvcj2fbjt/image/upload/v1658054194/cld-sample-3.jpg
+// https://res.cloudinary.com/dvcj2fbjt/image/upload/v1658308833/zy7kwnwelovb1rufrmnd.png
 
 import {axios} from "axios"
 import {url} from '../url'
@@ -157,3 +172,32 @@ exports.SignIn = async (req,res)=>{
 
     return res.status(201).send(token)
 }
+
+import {configureStore,createSlice} from "@reduxjs/toolkit"
+const authSlice = createSlice({
+    name:"auth",
+    initialState:{isLoggedIn:false},
+    reducers:{
+        logIn(state){
+            state.isLoggedIn = true
+        },
+        logOut(state){
+            state.isLoggedIn = false
+        }
+    }
+})
+
+export const authActions = authSlice.actions
+
+export const store = configureStore({
+    reducer:authSlice.reducer
+})
+
+//use rect-redux to get provider as an object in index.js and also to use store
+
+const [cred,setCred] = useState({
+    email:"",
+    password:""
+})
+
+<input type="email" value = {cred.email} onChange={(e) => setCred({...cred,email:e.target.value})}/>
